@@ -1,6 +1,14 @@
-# Sjsucsa
+# sjsucsa
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+This is the official web page of San Jose State University Chinese Stuent Association.
+This web page will be hosting by Firebase with domain sjsucsa.org
+
+## Development Environment
+
+Please first make sure that Node.js is installed.
+Then make sure Angular CLI is installed.
+Navigate to the root folder and run `npm install` to install node_modules
 
 ## Development server
 
