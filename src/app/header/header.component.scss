@@ -1,18 +1,57 @@
 .nav-container {
-  height: 40px;
+  //background-color: rgba(255,255,255,.8);
+  background-color: rgba(255,0,0,.1);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
-  background-color: rgba(0, 0, 0, .4);;
+  height: 40px;
   position: fixed;
-  top: 0;
   z-index: 1;
+  top: 0;
+  max-width: 100%;
 }
 
 .nav-content {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.logo {
   display: block;
-  margin: auto;
-  width: auto;
+  position: relative;
+  float: left;
+  height: 100%;
+  width: 20%;
 }
 
 .nav-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  width: 70%;
+  float: right;
+  position: relative;
+  background-color: aquamarine;
+  white-space: nowrap;
 
+  li {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    line-height: 40px;
+    cursor: pointer;
+    width: 20%;
+    text-align: center;
+  }
+
+  li:hover {
+    line-height: 25px;
+    transition: 0.5s;
+  }
 }
