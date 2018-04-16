@@ -7,23 +7,27 @@ asdf
 
     <ul class="nav-menu">
       <li (click)="selectMenu('H', $event)" #home
-          (mousedown)="applyHover($event)" (mouseleave)="removeHover($event)">
+          (mouseover)="applyHover($event)" (mouseleave)="removeHover($event)">
         Home
       </li>
 
-      <li (click)="selectMenu('W', $event)">
+      <li (click)="selectMenu('W', $event)"
+          (mouseover)="applyHover($event)" (mouseleave)="removeHover($event)">
         Who We Are
       </li>
 
-      <li (click)="selectMenu('M', $event)">
+      <li (click)="selectMenu('M', $event)"
+          (mouseover)="applyHover($event)" (mouseleave)="removeHover($event)">
         Memories
       </li>
 
-      <li (click)="selectMenu('C', $event)">
+      <li (click)="selectMenu('C', $event)"
+          (mouseover)="applyHover($event)" (mouseleave)="removeHover($event)">
         CSA Structure
       </li>
 
-      <li (click)="selectMenu('G', $event)">
+      <li (click)="selectMenu('G', $event)"
+          (mouseover)="applyHover($event)" (mouseleave)="removeHover($event)">
         Gallery
       </li>
     </ul>

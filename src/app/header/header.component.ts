@@ -10,7 +10,6 @@ export class HeaderComponent implements OnInit {
   @ViewChild('home') homeSelection: ElementRef;
 
   currentSelection: any;
-  currentHover: any;
 
   constructor(private renderer: Renderer2) { }
 
@@ -67,14 +66,14 @@ export class HeaderComponent implements OnInit {
   }
 
   applyHover(event: Event) {
-
     if (event.target !== this.currentSelection) {
-      if (this.currentHover) {
-        this.renderer.setStyle(this.currentHover, 'line-height', '40px');
-      }
+      this.renderer.setStyle(event.target, 'line-height', '25px');
+    }
+  }
 
-      this.currentSelection = event.target;
-      this.renderer.setStyle(this.currentHover, 'line-height', '25px');
+  removeHover(event: Event) {
+    if (event.target !== this.currentSelection) {
+      this.renderer.setStyle(event.target, 'line-height', '40px');
     }
   }
 
