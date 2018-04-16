@@ -6,23 +6,24 @@ asdf
     </div>
 
     <ul class="nav-menu">
-      <li>
+      <li (click)="selectMenu('H', $event)" #home
+          (mousedown)="applyHover($event)" (mouseleave)="removeHover($event)">
         Home
       </li>
 
-      <li>
+      <li (click)="selectMenu('W', $event)">
         Who We Are
       </li>
 
-      <li>
+      <li (click)="selectMenu('M', $event)">
         Memories
       </li>
 
-      <li>
+      <li (click)="selectMenu('C', $event)">
         CSA Structure
       </li>
 
-      <li>
+      <li (click)="selectMenu('G', $event)">
         Gallery
       </li>
     </ul>

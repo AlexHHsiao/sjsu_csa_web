@@ -37,7 +37,6 @@
   width: 70%;
   float: right;
   position: relative;
-  background-color: aquamarine;
   white-space: nowrap;
 
   li {
@@ -52,6 +51,6 @@
 
   li:hover {
     line-height: 25px;
-    transition: 0.5s;
+    //transition: 0.5s;
   }
 }
