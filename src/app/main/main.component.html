@@ -1,6 +1,25 @@
-<div>
-  <app-header></app-header>
-  <app-home></app-home>
+<div class="main-container">
+  <app-header (scrollToComponent)="scrollToComponent($event)"></app-header>
+
+  <div class="main-block" #home>
+    <app-home></app-home>
+  </div>
+
+  <div class="main-block" #who>
+    <app-who-we-are></app-who-we-are>
+  </div>
+
+  <div class="main-block" #memories>
+    <app-memories></app-memories>
+  </div>
+
+  <div class="main-block" #structure>
+    <app-structure></app-structure>
+  </div>
+
+  <div class="main-block" #gallery>
+    <app-gallery></app-gallery>
+  </div>
 </div>
 
 
