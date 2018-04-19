@@ -8,6 +8,11 @@ import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChil
 export class HeaderComponent implements OnInit {
 
   @ViewChild('home') homeSelection: ElementRef;
+  @ViewChild('who') whoSelection: ElementRef;
+  @ViewChild('memories') memoriesSelection: ElementRef;
+  @ViewChild('structure') structureSelection: ElementRef;
+  @ViewChild('gallery') gallerySelection: ElementRef;
+
   @Output() scrollToComponent = new EventEmitter<String>();
 
   currentSelection: any;
@@ -25,18 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   selectMenu(selection: string, event: Event) {
-
-    if (this.currentSelection) {
-      this.renderer.setStyle(this.currentSelection, 'border-bottom', 'none');
-      this.renderer.setStyle(this.currentSelection, 'line-height', '40px');
-      this.renderer.setStyle(this.currentSelection, 'height', '40px');
-    }
-
-    this.currentSelection = event.target;
-    this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
-    this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
-    this.renderer.setStyle(this.currentSelection, 'height', '35px');
-
+    this.changeSelectionRender(event.target);
     this.scrollToComponent.emit(selection);
   }
 
@@ -50,6 +44,65 @@ export class HeaderComponent implements OnInit {
     if (event.target !== this.currentSelection) {
       this.renderer.setStyle(event.target, 'line-height', '40px');
     }
+  }
+
+  changeMenu(selection: String) {
+    switch (selection) {
+      case 'H': {
+        if (this.currentSelection !== this.homeSelection) {
+          this.changeSelectionRender(this.homeSelection.nativeElement);
+        }
+
+        break;
+      }
+
+      case 'W': {
+        if (this.currentSelection !== this.homeSelection) {
+          this.changeSelectionRender(this.whoSelection.nativeElement);
+        }
+
+        break;
+      }
+
+      case 'M': {
+        if (this.currentSelection !== this.homeSelection) {
+          this.changeSelectionRender(this.memoriesSelection.nativeElement);
+        }
+
+        break;
+      }
+
+      case 'C': {
+        if (this.currentSelection !== this.homeSelection) {
+          this.changeSelectionRender(this.structureSelection.nativeElement);
+        }
+
+        break;
+      }
+
+      case 'G': {
+        if (this.currentSelection !== this.homeSelection) {
+          this.changeSelectionRender(this.gallerySelection.nativeElement);
+        }
+
+        break;
+      }
+
+      default: {
+        break;
+      }
+    }
+  }
+
+  changeSelectionRender(element: any) {
+    this.renderer.setStyle(this.currentSelection, 'border-bottom', 'none');
+    this.renderer.setStyle(this.currentSelection, 'line-height', '40px');
+    this.renderer.setStyle(this.currentSelection, 'height', '40px');
+
+    this.currentSelection = element;
+    this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
+    this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
+    this.renderer.setStyle(this.currentSelection, 'height', '35px');
   }
 
 }

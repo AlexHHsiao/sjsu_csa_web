@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-main',
@@ -13,7 +14,10 @@ export class MainComponent implements OnInit {
   @ViewChild('structure') structureComp: ElementRef;
   @ViewChild('gallery') galleryComp: ElementRef;
 
+  @ViewChild('header') header: HeaderComponent;
+
   isScrolling: boolean;
+  waitScroll: any;
 
   constructor() {
     this.isScrolling = false;
@@ -26,12 +30,12 @@ export class MainComponent implements OnInit {
 
     if (this.isScrolling) {
 
+      clearInterval(this.waitScroll);
 
-
-      const waitScroll = setInterval(() => {
+      this.waitScroll = setInterval(() => {
         if (!this.isScrolling) {
           this.scrollToComponent(selection);
-          clearInterval(waitScroll);
+          clearInterval(this.waitScroll);
         }
       }, 10);
     } else {
@@ -92,11 +96,40 @@ export class MainComponent implements OnInit {
       }, 5);
 
     } else if (currentY < targetY) {
+      const distance = targetY - currentY;
+      let changeDistance = 0;
 
+      const scrollIntervet = setInterval(() => {
+
+        changeDistance += distance / 100;
+        window.scrollTo(0, currentY + changeDistance);
+
+        if (changeDistance >= distance) {
+          window.scrollTo(0, targetY);
+          this.isScrolling = false;
+          clearInterval(scrollIntervet);
+        }
+
+      }, 5);
     }
   }
 
   @HostListener('window:scroll', []) onScroll() {
-    console.log(window.scrollY);
+
+    if (!this.isScrolling) {
+      if (window.scrollY < this.whoComp.nativeElement.offsetTop) {
+        this.header.changeMenu('H');
+      } else if (window.scrollY >= this.whoComp.nativeElement.offsetTop && window.scrollY < this.memoriesComp.nativeElement.offsetTop) {
+        this.header.changeMenu('W');
+      } else if (window.scrollY >= this.memoriesComp.nativeElement.offsetTop && window.scrollY < this.structureComp.nativeElement.offsetTop) {
+        this.header.changeMenu('M');
+      } else if (window.scrollY >= this.structureComp.nativeElement.offsetTop && window.scrollY < this.galleryComp.nativeElement.offsetTop) {
+        this.header.changeMenu('C');
+      } else if (window.scrollY >= this.galleryComp.nativeElement.offsetTop) {
+        this.header.changeMenu('G');
+      }
+    }
   }
+
+  
 }
