@@ -8,7 +8,6 @@
   position: fixed;
   z-index: 1;
   top: 0;
-  max-width: 100%;
 }
 
 .nav-content {
@@ -37,7 +36,6 @@
   width: 70%;
   float: right;
   position: relative;
-  white-space: nowrap;
 
   li {
     position: relative;
@@ -48,5 +46,52 @@
     width: 20%;
     text-align: center;
     transition: 0.5s;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1000px) {
+  .nav-content {
+    width: 100%;
+  }
+
+  .logo {
+    left: 5%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .nav-container {
+    height: 300px;
+    width: 100px;
+    right: 10px;
+    top: 30px;
+  }
+
+  .nav-content {
+    width: 100%;
+    margin: 0;
+  }
+
+  .logo {
+    height: 70px;
+    width: 70px;
+    float: right;
+  }
+
+  .nav-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    float: none;
+    position: relative;
+    white-space: nowrap;
+
+    li {
+      display: none;
+    }
   }
 }
