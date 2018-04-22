@@ -82,7 +82,7 @@ export class MainComponent implements OnInit {
       const distance = currentY - targetY;
       let changeDistance = currentY - targetY;
 
-      const scrollIntervet = setInterval(() => {
+      const scrollIntervat = setInterval(() => {
 
         changeDistance -= distance / 100;
         window.scrollTo(0, targetY + changeDistance);
@@ -90,7 +90,7 @@ export class MainComponent implements OnInit {
         if (changeDistance <= 0) {
           window.scrollTo(0, targetY);
           this.isScrolling = false;
-          clearInterval(scrollIntervet);
+          clearInterval(scrollIntervat);
         }
 
       }, 5);
@@ -99,7 +99,7 @@ export class MainComponent implements OnInit {
       const distance = targetY - currentY;
       let changeDistance = 0;
 
-      const scrollIntervet = setInterval(() => {
+      const scrollIntervat = setInterval(() => {
 
         changeDistance += distance / 100;
         window.scrollTo(0, currentY + changeDistance);
@@ -107,7 +107,7 @@ export class MainComponent implements OnInit {
         if (changeDistance >= distance) {
           window.scrollTo(0, targetY);
           this.isScrolling = false;
-          clearInterval(scrollIntervet);
+          clearInterval(scrollIntervat);
         }
 
       }, 5);
@@ -131,5 +131,5 @@ export class MainComponent implements OnInit {
     }
   }
 
-  
+
 }

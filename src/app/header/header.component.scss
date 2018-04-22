@@ -1,6 +1,6 @@
 .nav-container {
   //background-color: rgba(255,255,255,.8);
-  background-color: rgba(255,0,0,.1);
+  background-color: rgba(255, 0, 0, .1);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
@@ -49,6 +49,10 @@
   }
 }
 
+.selection-icon {
+  display: none;
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1000px) {
   .nav-content {
     width: 100%;
@@ -61,8 +65,18 @@
 
 @media only screen and (max-width: 768px) {
 
+  .selection-icon {
+    margin: 13px 5px 13px 3px;
+    display: block;
+    float: right;
+    height: 14px;
+    width: 14px;
+    -o-object-fit: contain;
+    object-fit: contain;
+  }
+
   .nav-container {
-    height: 300px;
+    height: 270px;
     width: 100px;
     right: 10px;
     top: 30px;
@@ -76,22 +90,21 @@
   .logo {
     height: 70px;
     width: 70px;
-    float: right;
+    float: none;
   }
 
   .nav-menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
+    height: 200px;
+    display: table;
     width: 100%;
     float: none;
-    position: relative;
-    white-space: nowrap;
 
     li {
-      display: none;
+      height: 20%;
+      width: 100%;
+      display: block;
+      font-size: small;
+      text-align: right;
     }
   }
 }

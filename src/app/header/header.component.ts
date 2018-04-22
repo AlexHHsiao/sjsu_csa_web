@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -16,17 +16,25 @@ export class HeaderComponent implements OnInit {
   @Output() scrollToComponent = new EventEmitter<String>();
 
   currentSelection: any;
+  isMobile: boolean;
+  selectedIcon = '../../assets/image/dot-selected.svg';
+  unselectedIcon = '../../assets/image/dot.svg';
 
   constructor(private renderer: Renderer2) {
   }
 
   ngOnInit() {
-
+    this.isMobile = window.innerWidth < 769;
     this.currentSelection = this.homeSelection.nativeElement;
 
-    this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
-    this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
-    this.renderer.setStyle(this.currentSelection, 'height', '35px');
+    if (!this.isMobile) {
+      this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
+      this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
+      this.renderer.setStyle(this.currentSelection, 'height', '35px');
+    } else {
+      this.renderer.setStyle(this.currentSelection, 'color', '#5c8bff');
+      this.currentSelection.children.src = this.selectedIcon;
+    }
   }
 
   selectMenu(selection: string, event: Event) {
@@ -35,13 +43,13 @@ export class HeaderComponent implements OnInit {
   }
 
   applyHover(event: Event) {
-    if (event.target !== this.currentSelection) {
+    if (event.target !== this.currentSelection && !this.isMobile) {
       this.renderer.setStyle(event.target, 'line-height', '25px');
     }
   }
 
   removeHover(event: Event) {
-    if (event.target !== this.currentSelection) {
+    if (event.target !== this.currentSelection && !this.isMobile) {
       this.renderer.setStyle(event.target, 'line-height', '40px');
     }
   }
@@ -95,14 +103,40 @@ export class HeaderComponent implements OnInit {
   }
 
   changeSelectionRender(element: any) {
-    this.renderer.setStyle(this.currentSelection, 'border-bottom', 'none');
-    this.renderer.setStyle(this.currentSelection, 'line-height', '40px');
-    this.renderer.setStyle(this.currentSelection, 'height', '40px');
 
-    this.currentSelection = element;
-    this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
-    this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
-    this.renderer.setStyle(this.currentSelection, 'height', '35px');
+    if (!this.isMobile) {
+      this.renderer.setStyle(this.currentSelection, 'border-bottom', 'none');
+      this.renderer.setStyle(this.currentSelection, 'line-height', '40px');
+      this.renderer.setStyle(this.currentSelection, 'height', '40px');
+
+      this.currentSelection = element;
+      this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
+      this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
+      this.renderer.setStyle(this.currentSelection, 'height', '35px');
+    } else {
+      this.renderer.setStyle(this.currentSelection, 'color', 'black');
+      this.currentSelection = element;
+      this.renderer.setStyle(this.currentSelection, 'color', '#5c8bff');
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth < 769 && !this.isMobile) {
+      this.renderer.setStyle(this.currentSelection, 'border-bottom', 'none');
+      this.renderer.setStyle(this.currentSelection, 'line-height', '40px');
+      this.renderer.setStyle(this.currentSelection, 'height', '40px');
+      this.renderer.setStyle(this.currentSelection, 'color', '#5c8bff');
+
+      this.isMobile = true;
+    } else if (event.target.innerWidth > 768 && this.isMobile) {
+      this.isMobile = false;
+
+      this.renderer.setStyle(this.currentSelection, 'border-bottom', '5px solid #5c8bff');
+      this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
+      this.renderer.setStyle(this.currentSelection, 'height', '35px');
+      this.renderer.setStyle(this.currentSelection, 'color', 'black');
+    }
   }
 
 }
