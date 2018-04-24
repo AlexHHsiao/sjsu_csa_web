@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
       this.renderer.setStyle(this.currentSelection, 'height', '35px');
     } else {
       this.renderer.setStyle(this.currentSelection, 'color', '#5c8bff');
-      this.currentSelection.children.src = this.selectedIcon;
+      this.currentSelection.querySelector('img').src = this.selectedIcon;
     }
   }
 
@@ -115,8 +115,10 @@ export class HeaderComponent implements OnInit {
       this.renderer.setStyle(this.currentSelection, 'height', '35px');
     } else {
       this.renderer.setStyle(this.currentSelection, 'color', 'black');
+      this.currentSelection.querySelector('img').src = this.unselectedIcon;
       this.currentSelection = element;
       this.renderer.setStyle(this.currentSelection, 'color', '#5c8bff');
+      this.currentSelection.querySelector('img').src = this.selectedIcon;
     }
   }
 
@@ -127,6 +129,7 @@ export class HeaderComponent implements OnInit {
       this.renderer.setStyle(this.currentSelection, 'line-height', '40px');
       this.renderer.setStyle(this.currentSelection, 'height', '40px');
       this.renderer.setStyle(this.currentSelection, 'color', '#5c8bff');
+      this.currentSelection.querySelector('img').src = this.selectedIcon;
 
       this.isMobile = true;
     } else if (event.target.innerWidth > 768 && this.isMobile) {
@@ -136,6 +139,7 @@ export class HeaderComponent implements OnInit {
       this.renderer.setStyle(this.currentSelection, 'line-height', '35px');
       this.renderer.setStyle(this.currentSelection, 'height', '35px');
       this.renderer.setStyle(this.currentSelection, 'color', 'black');
+      this.currentSelection.querySelector('img').src = this.unselectedIcon;
     }
   }
 

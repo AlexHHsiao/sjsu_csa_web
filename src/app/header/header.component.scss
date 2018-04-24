@@ -66,11 +66,11 @@
 @media only screen and (max-width: 768px) {
 
   .selection-icon {
-    margin: 13px 5px 13px 3px;
+    margin: 15px 5px 15px 3px;
     display: block;
     float: right;
-    height: 14px;
-    width: 14px;
+    height: 10px;
+    width: 10px;
     -o-object-fit: contain;
     object-fit: contain;
   }
@@ -79,7 +79,7 @@
     height: 270px;
     width: 100px;
     right: 10px;
-    top: 30px;
+    top: 20px;
   }
 
   .nav-content {
@@ -90,7 +90,7 @@
   .logo {
     height: 70px;
     width: 70px;
-    float: none;
+    float: right;
   }
 
   .nav-menu {
